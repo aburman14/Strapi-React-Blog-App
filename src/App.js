@@ -7,6 +7,7 @@ import Protected from "./components/Protected";
 import CreatePost from "./components/CreatePost";
 import Loader from "./components/Loader";
 import EditPost from "./components/EditPost";
+import BlogDetail from "./pages/BlogDetail";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/home" element={<Protected><Home loading={loading} setisedit={setisedit} /></Protected>}/>
         <Route path="/createpost" element={<Protected><CreatePost /></Protected>}/>
         <Route path="/editpost/:id" element={<Protected><EditPost /></Protected>}/>
+        <Route path="/posts/:id"  element={<BlogDetail />}/>
       </Routes>
       </BrowserRouter>
     </div>
