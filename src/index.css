@@ -1,8 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+/* @layer base {
+  ul, ol {
+    list-style: revert;
+  }
+} */
 
+body ol,ul{
+  list-style: revert;
+}
 
+h1,h2,h3,h4{
+  font-size: revert;
+}
+
+.App{
+  background-color: rgb(196, 232, 253);
+  height:100vh;
+  
+}
+
+.icon {
+  font-family: 'Kaushan Script', cursive;
+}
+
+.backcover{
+  background-image:url('/src/assets/article.svg');
+  background-repeat: no-repeat;
+  
+}
+
+.radial-bg{
+  background: rgb(43,35,178);
+background: radial-gradient(circle, rgb(44, 38, 162) 0%, rgb(112, 63, 235) 43%, rgb(87, 202, 248) 100%);
+}
 
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */

@@ -13,17 +13,20 @@ function Register({setuserexists}) {
       };
     
     function user_register() {
-        console.log(inpval);
-        // const temp_values={"username":'abc',"email":'abc@gmail.com',"password":'testuser'}
+      console.log('is it running')
+        console.log(JSON.stringify(inpval));
+        const temp_values={"username":'abc1',"email":'abc1@gmail.com',"password":'testuser'}
         // console.log(temp_values)
         const requestOptions = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(inpval),
         };
-        fetch("http://localhost:1337/api/auth/local/register", requestOptions)
+        fetch("https://strapi-blog-app-ppdl.onrender.com/api/auth/local/register", requestOptions)
           .then((response) => {
+            console.log(response)
             if(response.status===200){
+              console.log('suceess')
               localStorage.setItem("creds",inpval);
             return response.json()
             }
@@ -32,7 +35,9 @@ function Register({setuserexists}) {
             }
         })
           .then((data) => {
-            if(data){ ;
+            if(data){ 
+              console.log('is is here!')
+              localStorage.setItem("creds",JSON.stringify(data));
             Navigate('/home')}
           }
             )
@@ -41,22 +46,19 @@ function Register({setuserexists}) {
   
 
   return (
-    <>
-      <div className="flex min-h-full items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
-          <div>
-            {/* <img className="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"/> */}
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Register to Blog
-            </h2>
-          </div>
-          <form className="mt-8 space-y-9" >
-            <input type="hidden" name="remember" value="true" />
-            <div className="rounded-md shadow-sm">
-              <div className="mt-4">
-                <label htmlFor="username" className="sr-only">
-                  User Name
-                </label>
+    <div className="flex flex-row  justify-center items-center  m-auto  w-[65%]  h-96    border-2 border-t-[1px]  pt-[100px] border-gray-200 rounded-md shadow-lg shadow-gray-200">
+          <div className="w-[500px] radial-bg h-96 rounded-md ">
+            <div className=" backdrop-blur-md	bg-white/30 my-24 mx-4 rounded-md">
+            <h1 className="text-white font-bold px-4 py-4">Welcome To <span className="icon text-orange-500">Bl<span className="text-cyan-400">o</span>g It <span className="text-white">!</span></span></h1>
+            <p className="text-white p-4">Lorem ipsum dolor sit amet. Qui omnis ratione est tenetur voluptates eos eveniet harum cum distinctio voluptas ab aliquid illo sed </p>
+            
+            </div>
+            {/* Hello This is for Image  */}
+          </div> 
+          <div className="h-96 w-[500px]  px-10 bg-white rounded-md flex flex-col  justify-center">              
+           <form >
+                {/* <label htmlFor="username" className="sr-only mt-4 "> User Name</label> */}
+                <p className="font-bold py-2 text-orange-700 ">User Name</p>
                 <input
                   id="username"
                   value={inpval.username}
@@ -65,15 +67,15 @@ function Register({setuserexists}) {
                   onChange={(e) =>
                     setinp({ ...inpval, username: e.target.value })
                   }
-                  className="relative block w-full  border-0 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Username"
+                  className="relative block w-full rounded-md  border-0 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-              </div>
 
-              <div className="mt-4">
-                <label htmlFor="email-address" className="sr-only">
+              {/* <div className="mt-4"> */}
+                {/* <label htmlFor="email-address" className="sr-only">
                   Email address
-                </label>
+                </label> */}
+                <p className="font-bold py-2 text-orange-700 ">Email</p>
+
                 <input
                   id="email-address"
                   value={inpval.email}
@@ -82,14 +84,14 @@ function Register({setuserexists}) {
                   onChange={(e) => setinp({ ...inpval, email: e.target.value })}
                   autoComplete="email"
                   required
-                  className="relative block w-full  border-0 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Email address"
+                  className="relative block w-full rounded-sms  border-0 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"                  
                 />
-              </div>
-              <div className="mt-4">
-                <label htmlFor="password" className="sr-only">
+              {/* </div> */}
+              {/* <div className="mt-4"> */}
+                {/* <label htmlFor="password" className="sr-only">
                   Password
-                </label>
+                </label> */}
+               <p className="font-bold py-2 text-orange-700 ">Password</p>
                 <input
                   id="password"
                   value={inpval.password}
@@ -100,41 +102,36 @@ function Register({setuserexists}) {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="relative block w-full  border-0 py-2 .5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Password"
+                  className="relative block w-full rounded-md border-0 py-2 .5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-              </div>
-            </div>
+              {/* </div> */}
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
+              {/* <div className="flex items-center"> */}
+                {/* <input
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                />
-                <label
+                /> */}
+                {/* <label
                   htmlFor="remember-me"
                   className="ml-2 block text-sm text-gray-900"
                 >
                   Remember me
-                </label>
-              </div>
+                </label> */}
+              {/* </div> */}
 
-              <div className="text-sm">
                 <button type="button" onClick={()=>setuserexists(true)}
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
+                  className=" p-4 font-bold text-cyan-700 hover:text-indigo-500">
                   Already a Member?
                 </button>
-              </div>
             </div>
 
             <div>
               <button type="button"
                 onClick={(e)=>handlesubmit(e)}
-                className="group relative flex w-full justify-center rounded-md bg-[#be123c] text-text-color py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="group relative flex w-full justify-center rounded-md bg-gray-800 text-text-color py-2 px-3 text-sm font-semibold text-white hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                   <svg
@@ -153,10 +150,9 @@ function Register({setuserexists}) {
                 Register
               </button>
             </div>
-          </form>
-        </div>
+          </form> 
+          </div>
       </div>
-    </>
   );
 };
 
